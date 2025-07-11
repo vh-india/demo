@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Get a Quote - Miki Wire Works</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f6fb;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 960px;
+      margin: 50px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    .info-section {
+      flex: 1;
+      background-color: #011c33;
+      color: white;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+    }
+
+    .info-section img {
+      width: 150px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+
+    .info-section h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .info-section p {
+      font-size: 14px;
+      line-height: 1.7;
+      margin: 5px 0;
+    }
+
+    .info-section a {
+      color: #ddd;
+      text-decoration: underline;
+    }
+
+    .form-section {
+      flex: 2;
+      padding: 35px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #003366;
+    }
+
+    .form-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      flex: 1 1 100%;
+      padding: 12px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    #product-section {
+      margin-top: 20px;
+      background-color: #f8f9fc;
+      padding: 15px;
+      border: 1px dashed #ccc;
+      border-radius: 8px;
+    }
+
+    #product-section h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: #002d5d;
+    }
+
+    .product-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .product-row input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #bbb;
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: red;
+      cursor: pointer;
+    }
+
+    .add-product {
+      margin-top: 8px;
+      padding: 6px 12px;
+      font-size: 14px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: #006400;
+      color: white;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      margin-top: 25px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: #004d00;
+    }
+
+    @media (max-width: 768px) {
+      .wrapper {
+        flex-direction: column;
+      }
+
+      .info-section,
+      .form-section {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="info-section">
+    <img src="https://mikiwires.file.force.com/sfc/dist/version/renditionDownload?rendition=ORIGINAL_Png&versionId=068Ho00000c8qPv&operationContext=DELIVERY&contentId=05THo00002K9SZH&page=0&d=/a/Ho000001sjlS/TwPD6c_yCbrHwhuGLw7MfvqBdUBTdOqapUeyzm3itoc&oid=00DHo00000AIQV6&dpt=null&viewId=" alt="Miki Logo">
+    <h3>We would love to welcome you to our office</h3>
+    <p><strong>Miki Wire Works Pvt. Ltd.</strong></p>
+    <p>At & P.O. Mahilong, Ranchi - 835013,<br>Jharkhand, India</p>
+    <p>📞 +91 95706 10002</p>
+    <p>✉️ <a href="mailto:ranchi@mikiwire.co.in">ranchi@mikiwire.co.in</a></p>
+    <p>🌐 <a href="https://www.mikiwire.co.in" target="_blank">www.mikiwire.co.in</a></p>
+  </div>
+
+  <div class="form-section">
+    <h2>Request a Quote</h2>
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DHo00000AIQV6" method="POST" onsubmit="return prepareForm()">
+      <input type="hidden" name="oid" value="00DHo00000AIQV6">
+      <input type="hidden" name="retURL" value="https://google.com">
+      <input type="hidden" name="lead_source" value="Website">
+
+      <div class="form-group">
+        <input type="text" name="first_name" placeholder="First Name*" required />
+        <input type="text" name="last_name" placeholder="Last Name*" required />
+        <input type="email" name="email" placeholder="Email*" required />
+        <input type="tel" name="mobile" placeholder="Mobile Number*" required />
+        <input type="text" name="company" placeholder="Company Name*" required />
+      </div>
+
+      <div id="product-section">
+        <h3>Products & Quantities</h3>
+        <div id="product-list"></div>
+        <button type="button" class="add-product" onclick="addProductRow()">+ Add Product</button>
+      </div>
+
+      <textarea id="00NHo00000h6p4u" name="00NHo00000h6p4u" style="display:none;"></textarea>
+
+      <div class="form-group">
+        <textarea name="description" placeholder="Additional Requirements (Optional)"></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function addProductRow(name = '', qty = '') {
+    const container = document.getElementById("product-list");
+    const row = document.createElement("div");
+    row.className = "product-row";
+    row.innerHTML = `
+      <input type="text" class="product-name" placeholder="Product Name" value="${name}" required />
+      <input type="number" class="product-qty" placeholder="Quantity" min="1" value="${qty}" required />
+      <button type="button" class="remove-btn" title="Remove">×</button>
+    `;
+    row.querySelector(".remove-btn").onclick = () => row.remove();
+    container.appendChild(row);
+  }
+
+  function combineProducts() {
+    const names = document.querySelectorAll(".product-name");
+    const qtys = document.querySelectorAll(".product-qty");
+    let result = [];
+
+    for (let i = 0; i < names.length; i++) {
+      const name = names[i].value.trim();
+      const qty = qtys[i].value.trim();
+      if (name && qty) {
+        result.push(`${name} - ${qty}`);
+      }
+    }
+
+    document.getElementById("00NHo00000h6p4u").value = result.join("\n");
+  }
+
+  function prepareForm() {
+    combineProducts();
+    return true;
+  }
+
+  // Add two default product rows
+  for (let i = 0; i < 2; i++) addProductRow();
+</script>
+
+</body>
+</html>
