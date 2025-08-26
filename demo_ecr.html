@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Lead Registration - Earth Sense</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            min-height: 100vh;
+        }
+
+        .left {
+            flex: 1.2;
+            background: #053b0d;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .left img {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+
+        .right {
+            flex: 1.8;
+            background: #fff;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .btn-select {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn-select button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #003366;
+            color: white;
+            font-size: 15px;
+        }
+
+        .btn-select button:hover {
+            background: #0055aa;
+        }
+
+        form {
+            display: none;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h3 {
+            color: #003366;
+            margin-bottom: 15px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-grid textarea,
+        #product-section {
+            grid-column: span 2;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        #product-section {
+            background: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .product-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .product-row input {
+            flex: 1;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: red;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .add-product {
+            background-color: #003366;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .submit-button {
+            margin-top: 20px;
+            background-color: #003366;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-button:hover {
+            background-color: #0055aa;
+        }
+
+        label {
+            display: inline-flex;
+            align-items: baseline;
+            /* text and checkbox share baseline */
+            gap: 4px;
+            /* adjust gap between box and text */
+            cursor: pointer;
+        }
+
+        label input[type="checkbox"] {
+            margin: 0;
+            position: relative;
+            top: 2px;
+            /* fine-tune vertical alignment */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- LEFT SIDE -->
+        <div class="left">
+            <img src="https://www.earthsenserecycle.com/img/esr-logo.webp" alt="Company Logo">
+            <h1>Earth Sense Recycle Pvt. Ltd.</h1>
+            <p>Welcome! Please choose your registration type :</p>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="right">
+            <!-- Buttons -->
+            <div class="btn-select">
+                <button onclick="showForm('buyerForm')">Buyer Registration</button>
+                <button onclick="showForm('sellerForm')">Seller Registration</button>
+            </div>
+
+            <!-- BUYER FORM -->
+            <form id="buyerForm"
+                action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DKa00000EKrFN"
+                method="POST" onsubmit="return prepareBuyerForm()">
+                <input type="hidden" name="oid" value="00DKa00000EKrFN">
+                <input type="hidden" name="retURL" value="https://vh-india.github.io/demo/index.html">
+                <input type="hidden" name="Customer_Type__c" value="Buyer">
+
+
+                <h3>Buyer Information</h3>
+                <div class="form-grid">
+                    <input name="first_name" placeholder="First Name*" required>
+                    <input name="last_name" placeholder="Last Name*" required>
+                    <input name="email" type="email" placeholder="Email*" required>
+                    <input name="phone" placeholder="Phone">
+                    <input name="company" placeholder="Company">
+                </div><br/>
+
+                <div class="form-grid">
+                    <div id="product-section">
+                        <strong>Add Products</strong>
+                        <div id="product-list"></div>
+                        <button type="button" class="add-product" onclick="addProductRow()">+ Add Product</button>
+                    </div>
+                    <!-- Hidden field to store combined products -->
+                    <textarea name="00NKa00000V5zB7" id="00NKa00000V5zB7" style="display:none;"></textarea>
+
+            
+                     <select id="00NKa00000V5zBC" name="00NKa00000V5zBC">
+                        <option value="">--Budget Range--</option>
+                        <option value="Below ₹1 Lakh">Below ₹1 Lakh</option>
+                        <option value="₹1–10 Lakhs">₹1–10 Lakhs</option>
+                        <option value="Above ₹10 Lakhs">Above ₹10 Lakhs</option>
+                    </select>
+
+                    <input  id="00NKa00000V5zBC" name="00NKa00000V5zBC" size="20" type="text" /><br>
+                    
+                    <select name="00NKa00000V5zBH">
+                        <option value="">--Urgency--</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                    <!-- <textarea name="00NKa00000V5zBM" placeholder="Delivery Location"></textarea> -->
+
+                    <h3>Delivery Location</h3>
+
+
+                    <textarea name="street" placeholder="Street"></textarea>
+                    <input id="city" maxlength="40" name="city" placeholder="City">
+                    <input id="state" maxlength="20" name="state" placeholder="State/Province">
+                    <input id="zip" maxlength="20" name="zip" placeholder="Zip">
+                    <input id="country" maxlength="40" name="country" placeholder="Country">
+
+                </div>
+
+                <button type="submit" class="submit-button">Submit Buyer Lead</button>
+            </form>
+
+            <!-- SELLER FORM -->
+            <form id="sellerForm"
+                action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DKa00000EKrFN"
+                method="POST"
+                  onsubmit="return prepareSellerForm()">
+                <input type="hidden" name="oid" value="00DKa00000EKrFN">
+                <input type="hidden" name="retURL" value="https://vh-india.github.io/demo/index.html">
+
+                <input type="hidden" name="Customer_Type__c" value="Seller">
+
+       
+                <h3>Seller Information</h3>
+                <div class="form-grid">
+                    <input name="first_name" placeholder="First Name*" required>
+                    <input name="last_name" placeholder="Last Name*" required>
+                    <input name="email" type="email" placeholder="Email*" required>
+                    <input name="phone" placeholder="Phone">
+                    <input name="company" placeholder="Company">
+                     <select name="00NKa00000V5zBR">
+                        <option value="">--Material Type--</option>
+                        <option value="E‑waste">E‑waste</option>
+                        <option value="Plastic">Plastic</option>
+                        <option value="Metal">Metal</option>
+                        <option value="Paper;">Paper;</option>
+                        <option value="Batteries">Batteries</option>
+                        <option value="Cables">Cables</option>
+                        <option value="Devices">Devices</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div><br/>
+
+                <div class="form-grid">
+                   
+                    <!-- <textarea name="00NKa00000V5zBW" placeholder="Item Details"></textarea> -->
+
+                    <div id="product-section">
+                        <strong>Add Items</strong>
+                        <div id="seller-product-list"></div>
+                        <button type="button" class="add-product" onclick="addSellerProductRow()">+ Add Item</button>
+                    </div>
+                    <!-- Hidden field to store combined seller items -->
+    <textarea name="00NKa00000V5zBW" id="00NKa00000V5zBW" style="display:none;"></textarea>
+
+   <label>
+        <input type="checkbox" name="00NKa00000V5zPq" value="1"> Pickup Required?
+    </label>
+
+
+                    <label>
+                        <input type="checkbox" name="00NKa00000V5zBq" value="1"> Compliance Docs Available?
+                    </label>
+
+                    <!-- <textarea name="00NKa00000V5zBL" placeholder="Pickup Location"></textarea> -->
+                    <input name="00NKa00000V5zBl" placeholder="Preferred Selling Price">
+
+
+
+<span class="dateInput dateOnlyInput">
+    <input id="00NKa00000V5zBv" name="00NKa00000V5zBv" size="12" type="text" placeholder="Target Pickup Date (MM/DD/YYYY)" />
+</span>
+
+                          <h3>Pickup Location</h3>
+                       <textarea name="street" placeholder="Street"></textarea>
+                    <input id="city" maxlength="40" name="city" placeholder="City">
+                    <input id="state" maxlength="20" name="state" placeholder="State/Province">
+                    <input id="zip" maxlength="20" name="zip" placeholder="Zip">
+                    <input id="country" maxlength="40" name="country" placeholder="Country">
+
+                </div>
+
+                <button type="submit" class="submit-button">Submit Seller Lead</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showForm(formId) {
+            document.getElementById("buyerForm").style.display = "none";
+            document.getElementById("sellerForm").style.display = "none";
+            document.getElementById(formId).style.display = "block";
+        }
+
+        // Product section for buyer
+        function addProductRow(name = '', qty = '') {
+            const container = document.getElementById("product-list");
+            const row = document.createElement("div");
+            row.className = "product-row";
+            row.innerHTML = `
+      <input type="text" class="product-name" placeholder="Product Name" value="${name}" required />
+      <input type="number" class="product-qty" placeholder="Quantity" min="1" value="${qty}" required />
+      <button type="button" class="remove-btn" title="Remove">×</button>
+    `;
+            row.querySelector(".remove-btn").onclick = () => row.remove();
+            container.appendChild(row);
+        }
+
+        function combineProducts() {
+            const names = document.querySelectorAll(".product-name");
+            const qtys = document.querySelectorAll(".product-qty");
+            let result = [];
+            for (let i = 0; i < names.length; i++) {
+                const name = names[i].value.trim();
+                const qty = qtys[i].value.trim();
+                if (name && qty) {
+                    result.push(`${name} - ${qty}`);
+                }
+            }
+            document.getElementById("00NKa00000V5zB7").value = result.join("\n");
+        }
+
+        function prepareBuyerForm() {
+            combineProducts();
+            return true;
+        }
+
+        // Load default 1 product row
+        addProductRow();
+
+        function addSellerProductRow(name = '', qty = '') {
+            const container = document.getElementById("seller-product-list");
+            const row = document.createElement("div");
+            row.className = "product-row";
+            row.innerHTML = `
+            <input type="text" class="seller-item-name" placeholder="Item Name" value="${name}" required />
+            <input type="number" class="seller-item-qty" placeholder="Quantity" min="1" value="${qty}" required />
+            <button type="button" class="remove-btn" title="Remove">×</button>
+        `;
+            row.querySelector(".remove-btn").onclick = () => row.remove();
+            container.appendChild(row);
+        }
+
+        function combineSellerProducts() {
+            const names = document.querySelectorAll(".seller-item-name");
+            const qtys = document.querySelectorAll(".seller-item-qty");
+            let result = [];
+            for (let i = 0; i < names.length; i++) {
+                const name = names[i].value.trim();
+                const qty = qtys[i].value.trim();
+                if (name && qty) {
+                    result.push(`${name} - ${qty}`);
+                }
+            }
+            document.getElementById("00NKa00000V5zBW").value = result.join("\n");
+        }
+
+        function prepareSellerForm() {
+            combineSellerProducts();
+            return true;
+        }
+
+        // Load default 1 item row for seller
+        document.addEventListener("DOMContentLoaded", () => {
+            addSellerProductRow();
+        });
+    </script>
+</body>
+
+</html>
