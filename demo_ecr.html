@@ -276,12 +276,12 @@
                     <!-- <textarea name="00NKa00000V5zBW" placeholder="Item Details"></textarea> -->
  
                     <div id="product-section">
-                        <strong>Add Items</strong>
+                        <strong>Sell Items</strong>
                         <div id="seller-product-list"></div>
                         <button type="button" class="add-product" onclick="addSellerProductRow()">+ Add Item</button>
                     </div>
                     <!-- Hidden field to store combined seller items -->
-    <textarea name="00NKa00000V5zBW" id="00NKa00000V5zBW" style="display:none;"></textarea>
+    <textarea name="00NKa00000XK8uM" id="00NKa00000XK8uM" style="display:none;"></textarea>
  
    <label>
         <input type="checkbox" name="00NKa00000V5zPq" value="1"> Pickup Required?
@@ -347,7 +347,7 @@
                     result.push(`${name} - ${qty}`);
                 }
             }
-            document.getElementById("00NKa00000V5zB7").value = result.join("\r\n");
+            document.getElementById("00NKa00000XK8uM").value = result.join("\r\n");
         }
  
         function prepareBuyerForm() {
@@ -382,7 +382,7 @@
                     result.push(`${name} - ${qty}`);
                 }
             }
-            document.getElementById("00NKa00000V5zBW").value = result.join("\r\n");
+            document.getElementById("00NKa00000XK8uM").value = result.join("\r\n");
         }
  
         function prepareSellerForm() {
