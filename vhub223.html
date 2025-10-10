@@ -22,7 +22,7 @@
     }
 
     .form-header {
-      background: linear-gradient(90deg, #05204b);
+      background: linear-gradient(90deg, #032E61);
       padding: 24px 30px;
       text-align: center;
     }
@@ -96,7 +96,7 @@
       border-radius: 10px;
       padding: 18px;
       box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.03);
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
 
     .checkbox-grid label {
@@ -122,6 +122,14 @@
       border-radius: 8px;
       font-size: 14px;
       background: #f9fbff;
+      margin-bottom: 12px;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 13px;
+      margin-top: 5px;
+      display: none;
     }
 
     .form-footer {
@@ -140,7 +148,7 @@
 
     .submit-btn {
       width: 100%;
-      background: linear-gradient(90deg, #0046b8, #007bff);
+      background: linear-gradient(90deg, #032E61);
       color: white;
       padding: 15px;
       font-size: 16px;
@@ -151,13 +159,13 @@
       cursor: pointer;
       letter-spacing: 0.3px;
       transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 70, 184, 0.3);
+      box-shadow: 0 5px 10px #032E61;
     }
 
     .submit-btn:hover {
-      background: linear-gradient(90deg, #003c9c, #0068e0);
+      background: linear-gradient(90deg, #00A1E0);
       transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(0, 70, 184, 0.4);
+      box-shadow: 0 8px 22px #032E61;
     }
 
     @media (max-width: 600px) {
@@ -187,10 +195,10 @@
     <input type="hidden" name="lead_source" value="Website">
 
     <div class="form-group">
-      <input type="text" name="first_name" placeholder="First Name" >
-      <input type="text" name="last_name" placeholder="Last Name" >
+      <input type="text" name="first_name" placeholder="First Name*" required>
+      <input type="text" name="last_name" placeholder="Last Name*" >
       <input type="email" name="email" placeholder="Business Email*" required>
-      <input type="text" name="company" placeholder="Company Name" >
+      <input type="text" name="company" placeholder="Company Name*" required>
       <input type="text" name="title" placeholder="Job Title">
     </div>
 
@@ -223,14 +231,18 @@
         <label><input type="checkbox" name="00Nd5000007RHqM" value="1"> Agentforce Development</label>
         <label><input type="checkbox" name="00Nd5000007RQ42" value="1"> CRM Analytics</label>
         <label><input type="checkbox" name="00Nd5000007RWz3" value="1"> Managed Services</label>
-        <label><input type="checkbox" id="othersCheckbox" name="00Nd5000007RZQf" value="1"> Others</label>
+        <label><input type="checkbox" id="00Nd5000007S8WT" name="00Nd5000007S8WT" value="1"> Zeendesk</label>
+        <label><input type="checkbox" id="othersCheckbox" name="00Nd5000007RZQf" value="Others"> Others</label>
       </div>
       <input type="text" id="othersInput" name="others_text" placeholder="Please specify other services...">
+      <div id="servicesError" class="error-message">⚠️ Please select at least one Service(s) of Interest.</div>
     </div>
 
     <div class="form-group">
       <textarea name="description" placeholder="How can we help you?"></textarea>
     </div>
+
+    <textarea id="00Nd5000007RX8j" name="00Nd5000007RX8j" wrap="soft" style="display: none;"></textarea>
 
     <div class="form-footer">
       <input type="checkbox"> 
@@ -245,25 +257,52 @@
 const othersCheckbox = document.getElementById('othersCheckbox');
 const othersInput = document.getElementById('othersInput');
 const serviceCheckboxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]');
+const servicesError = document.getElementById('servicesError');
+const servicesSelected = document.getElementById('00Nd5000007RX8j');
 
 othersCheckbox.addEventListener('change', () => {
   othersInput.style.display = othersCheckbox.checked ? 'block' : 'none';
   if(!othersCheckbox.checked) othersInput.value = '';
 });
 
+serviceCheckboxes.forEach(cb => {
+  cb.addEventListener('change', () => {
+    // Hide error as soon as any checkbox is checked
+    if (Array.from(serviceCheckboxes).some(c => c.checked)) {
+      servicesError.style.display = 'none';
+    }
+  });
+});
+
 function handleOthers() {
   // Check at least one service is selected
   const anyChecked = Array.from(serviceCheckboxes).some(cb => cb.checked);
   if (!anyChecked) {
-    alert("⚠️ Please select at least one Service(s) of Interest.");
+    servicesError.style.display = 'block';
     return false;
+  } else {
+    servicesError.style.display = 'none';
   }
 
-  // Validate 'Others' text
-  if (othersCheckbox.checked && othersInput.value.trim() === '') {
-    alert("⚠️ Please specify the 'Other' service.");
-    return false;
-  }
+  // Collect selected services
+  let selected = [];
+  serviceCheckboxes.forEach(cb => {
+    if (cb.checked) {
+      if (cb.id === 'othersCheckbox') {
+        const othersText = othersInput.value.trim();
+        if (othersText) {
+          selected.push(othersText);
+        } else {
+          selected.push('Others');
+        }
+      } else {
+        // Get the label text
+        const label = cb.parentElement.textContent.trim();
+        selected.push(label);
+      }
+    }
+  });
+  servicesSelected.value = selected.join('; ');
 
   return true;
 }
