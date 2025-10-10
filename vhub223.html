@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - Valuehub</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #eaf3ff 0%, #f7faff 100%);
+      margin: 0;
+      padding: 0;
+    }
+
+    .form-wrapper {
+      max-width: 740px;
+      background: #ffffff;
+      margin: 70px auto;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+    }
+
+    .form-header {
+      background: linear-gradient(90deg, #05204b);
+      padding: 24px 30px;
+      text-align: center;
+    }
+
+    .form-header h2 {
+      color: white;
+      font-size: 28px;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .form-header p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    form {
+      padding: 40px 45px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      flex: 1 1 100%;
+      padding: 12px 14px;
+      font-size: 15px;
+      border: 1.6px solid #d0d8e2;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      outline: none;
+      background-color: #fafcff;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 6px rgba(0, 123, 255, 0.25);
+      background-color: #ffffff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .checkbox-section {
+      margin-top: 25px;
+    }
+
+    .checkbox-section h4 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: #002b5c;
+      font-weight: 600;
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 10px 20px;
+      background-color: #f9fbff;
+      border: 1.6px solid #e3e7ef;
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.03);
+      margin-bottom: 10px;
+    }
+
+    .checkbox-grid label {
+      font-size: 14.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #333;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .checkbox-grid label:hover {
+      color: #007bff;
+    }
+
+    #othersInput {
+      display: none;
+      margin-top: 12px;
+      padding: 10px;
+      width: 100%;
+      border: 1.4px solid #cfd8e3;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #f9fbff;
+    }
+
+    .form-footer {
+      margin-top: 15px;
+      font-size: 13.5px;
+      color: #444;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .form-footer input[type="checkbox"] {
+      margin-top: 3px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(90deg, #0046b8, #007bff);
+      color: white;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      margin-top: 28px;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 70, 184, 0.3);
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(90deg, #003c9c, #0068e0);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(0, 70, 184, 0.4);
+    }
+
+    @media (max-width: 600px) {
+      form {
+        padding: 30px 25px;
+      }
+      .checkbox-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-header h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-wrapper">
+  <div class="form-header">
+    <h2>Contact Us</h2>
+    <p>We’d love to hear from you — please fill out the form below.</p>
+  </div>
+
+  <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Dd5000008CHN4" method="POST" onsubmit="return handleOthers()">
+    <input type="hidden" name="oid" value="00Dd5000008CHN4">
+    <input type="hidden" name="retURL" value="https://google.com">
+    <input type="hidden" name="lead_source" value="Website">
+
+    <div class="form-group">
+      <input type="text" name="first_name" placeholder="First Name" >
+      <input type="text" name="last_name" placeholder="Last Name" >
+      <input type="email" name="email" placeholder="Business Email*" required>
+      <input type="text" name="company" placeholder="Company Name" >
+      <input type="text" name="title" placeholder="Job Title">
+    </div>
+
+    <div class="checkbox-section">
+      <h4>Service(s) of Interest *</h4>
+      <div class="checkbox-grid">
+        <label><input type="checkbox" name="00Nd5000007RQ0n" value="1"> Sales Cloud</label>
+        <label><input type="checkbox" name="00Nd5000007RQ2P" value="1"> Service Cloud</label>
+        <label><input type="checkbox" name="00Nd5000007RQ41" value="1"> Marketing Cloud Growth</label>
+        <label><input type="checkbox" name="00Nd5000007R8VK" value="1"> Marketing Cloud Advanced</label>
+        <label><input type="checkbox" name="00Nd5000007RLmR" value="1"> Marketing Cloud Next</label>
+        <label><input type="checkbox" name="00Nd5000007RQQb" value="1"> Data Cloud</label>
+        <label><input type="checkbox" name="00Nd5000007RNz0" value="1"> Industries Cloud</label>
+        <label><input type="checkbox" name="00Nd5000007RSiX" value="1"> B2B Commerce Cloud</label>
+        <label><input type="checkbox" name="00Nd5000007RTJd" value="1"> Loyalty Management</label>
+        <label><input type="checkbox" name="00Nd5000007RUKX" value="1"> Financial Service Cloud</label>
+        <label><input type="checkbox" name="00Nd5000007RVy9" value="1"> Health Cloud</label>
+        <label><input type="checkbox" name="00Nd5000007RWJ7" value="1"> Field Service Lightning</label>
+        <label><input type="checkbox" name="00Nd5000007RNao" value="1"> Heroku</label>
+        <label><input type="checkbox" name="00Nd5000007RWKj" value="1"> Manufacturing Cloud</label>
+        <label><input type="checkbox" name="00Nd5000007RWML" value="1"> Revenue Cloud</label>
+        <label><input type="checkbox" name="00Nd5000007RPxa" value="1"> Einstein Analytics</label>
+        <label><input type="checkbox" name="00Nd5000007RWRB" value="1"> MuleSoft</label>
+        <label><input type="checkbox" name="00Nd5000007RWkX" value="1"> Slack</label>
+        <label><input type="checkbox" name="00Nd5000007RNcV" value="1"> Platform/Heroku</label>
+        <label><input type="checkbox" name="00Nd5000007RAKk" value="1"> Non-profit Cloud</label>
+        <label><input type="checkbox" name="00Nd5000007R7UQ" value="1"> Education Cloud</label>
+        <label><input type="checkbox" name="00Nd5000007RWqz" value="1"> Digital Engagement</label>
+        <label><input type="checkbox" name="00Nd5000007RNsY" value="1"> Mobile App Development</label>
+        <label><input type="checkbox" name="00Nd5000007RHqM" value="1"> Agentforce Development</label>
+        <label><input type="checkbox" name="00Nd5000007RQ42" value="1"> CRM Analytics</label>
+        <label><input type="checkbox" name="00Nd5000007RWz3" value="1"> Managed Services</label>
+        <label><input type="checkbox" id="othersCheckbox" name="00Nd5000007RZQf" value="1"> Others</label>
+      </div>
+      <input type="text" id="othersInput" name="others_text" placeholder="Please specify other services...">
+    </div>
+
+    <div class="form-group">
+      <textarea name="description" placeholder="How can we help you?"></textarea>
+    </div>
+
+    <div class="form-footer">
+      <input type="checkbox"> 
+      <span>I give permission to receive Valuehub product-related content and updates.</span>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit</button>
+  </form>
+</div>
+
+<script>
+const othersCheckbox = document.getElementById('othersCheckbox');
+const othersInput = document.getElementById('othersInput');
+const serviceCheckboxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]');
+
+othersCheckbox.addEventListener('change', () => {
+  othersInput.style.display = othersCheckbox.checked ? 'block' : 'none';
+  if(!othersCheckbox.checked) othersInput.value = '';
+});
+
+function handleOthers() {
+  // Check at least one service is selected
+  const anyChecked = Array.from(serviceCheckboxes).some(cb => cb.checked);
+  if (!anyChecked) {
+    alert("⚠️ Please select at least one Service(s) of Interest.");
+    return false;
+  }
+
+  // Validate 'Others' text
+  if (othersCheckbox.checked && othersInput.value.trim() === '') {
+    alert("⚠️ Please specify the 'Other' service.");
+    return false;
+  }
+
+  return true;
+}
+</script>
+
+</body>
+</html>
