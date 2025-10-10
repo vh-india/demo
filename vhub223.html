@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact Us - Valuehub</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: "Segoe UI", Arial, sans-serif;
+      font-family: "Poppins", sans-serif;
       background: linear-gradient(135deg, #eaf3ff 0%, #f7faff 100%);
       margin: 0;
       padding: 0;
@@ -148,7 +149,7 @@
 
     .submit-btn {
       width: 100%;
-      background: linear-gradient(90deg, #032E61);
+      background: linear-gradient(90deg,#032E61);
       color: white;
       padding: 15px;
       font-size: 16px;
@@ -159,13 +160,13 @@
       cursor: pointer;
       letter-spacing: 0.3px;
       transition: all 0.3s ease;
-      box-shadow: 0 5px 10px #032E61;
+      box-shadow: 0 5px 15px rgba(0, 70, 184, 0.3);
     }
 
     .submit-btn:hover {
       background: linear-gradient(90deg, #00A1E0);
       transform: translateY(-2px);
-      box-shadow: 0 8px 22px #032E61;
+      box-shadow: 0 8px 22px rgba(0, 70, 184, 0.4);
     }
 
     @media (max-width: 600px) {
@@ -196,7 +197,7 @@
 
     <div class="form-group">
       <input type="text" name="first_name" placeholder="First Name*" required>
-      <input type="text" name="last_name" placeholder="Last Name*" >
+      <input type="text" name="last_name" placeholder="Last Name" >
       <input type="email" name="email" placeholder="Business Email*" required>
       <input type="text" name="company" placeholder="Company Name*" required>
       <input type="text" name="title" placeholder="Job Title">
@@ -232,7 +233,7 @@
         <label><input type="checkbox" name="00Nd5000007RQ42" value="1"> CRM Analytics</label>
         <label><input type="checkbox" name="00Nd5000007RWz3" value="1"> Managed Services</label>
         <label><input type="checkbox" id="00Nd5000007S8WT" name="00Nd5000007S8WT" value="1"> Zeendesk</label>
-        <label><input type="checkbox" id="othersCheckbox" name="00Nd5000007RZQf" value="Others"> Others</label>
+        <label><input type="checkbox" id="othersCheckbox" name="00Nd5000007RZQf" value="1"> Others</label>
       </div>
       <input type="text" id="othersInput" name="others_text" placeholder="Please specify other services...">
       <div id="servicesError" class="error-message">⚠️ Please select at least one Service(s) of Interest.</div>
@@ -245,9 +246,10 @@
     <textarea id="00Nd5000007RX8j" name="00Nd5000007RX8j" wrap="soft" style="display: none;"></textarea>
 
     <div class="form-footer">
-      <input type="checkbox"> 
-      <span>I give permission to receive Valuehub product-related content and updates.</span>
+      <input type="checkbox" id="permissionCheckbox"> 
+      <span>I give permission to receive Valuehub product-related content and updates.*</span>
     </div>
+    <div id="permissionError" class="error-message">⚠️ Please agree to receive Valuehub product-related content and updates.</div>
 
     <button type="submit" class="submit-btn">Submit</button>
   </form>
@@ -259,6 +261,8 @@ const othersInput = document.getElementById('othersInput');
 const serviceCheckboxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]');
 const servicesError = document.getElementById('servicesError');
 const servicesSelected = document.getElementById('00Nd5000007RX8j');
+const permissionCheckbox = document.getElementById('permissionCheckbox');
+const permissionError = document.getElementById('permissionError');
 
 othersCheckbox.addEventListener('change', () => {
   othersInput.style.display = othersCheckbox.checked ? 'block' : 'none';
@@ -274,6 +278,12 @@ serviceCheckboxes.forEach(cb => {
   });
 });
 
+permissionCheckbox.addEventListener('change', () => {
+  if (permissionCheckbox.checked) {
+    permissionError.style.display = 'none';
+  }
+});
+
 function handleOthers() {
   // Check at least one service is selected
   const anyChecked = Array.from(serviceCheckboxes).some(cb => cb.checked);
@@ -282,6 +292,14 @@ function handleOthers() {
     return false;
   } else {
     servicesError.style.display = 'none';
+  }
+
+  // Check permission checkbox
+  if (!permissionCheckbox.checked) {
+    permissionError.style.display = 'block';
+    return false;
+  } else {
+    permissionError.style.display = 'none';
   }
 
   // Collect selected services
