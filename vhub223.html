@@ -97,7 +97,7 @@
       border-radius: 10px;
       padding: 18px;
       box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.03);
-      margin-bottom: 5px;
+      margin-bottom: 15px;
     }
 
     .checkbox-grid label {
@@ -117,13 +117,21 @@
     #othersInput {
       display: none;
       margin-top: 12px;
-      padding: 10px;
-      width: 100%;
-      border: 1.4px solid #cfd8e3;
+      padding: 12px 14px;
+      font-size: 15px;
+      border: 1.6px solid #d0d8e2;
       border-radius: 8px;
-      font-size: 14px;
-      background: #f9fbff;
-      margin-bottom: 12px;
+      transition: all 0.3s ease;
+      outline: none;
+      background-color: hsl(216, 100%, 99%);
+      grid-column: 1 / -1;
+      width: 93%;
+    }
+
+    #othersInput:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 6px rgba(0, 123, 255, 0.25);
+      background-color: #ffffff;
     }
 
     .error-message {
@@ -232,10 +240,10 @@
         <label><input type="checkbox" name="00Nd5000007RHqM" value="1"> Agentforce Development</label>
         <label><input type="checkbox" name="00Nd5000007RQ42" value="1"> CRM Analytics</label>
         <label><input type="checkbox" name="00Nd5000007RWz3" value="1"> Managed Services</label>
-        <label><input type="checkbox" id="00Nd5000007S8WT" name="00Nd5000007S8WT" value="1"> Zeendesk</label>
+        <label><input type="checkbox" id="00Nd5000007S8WT" name="00Nd5000007S8WT" value="1"> Zendesk</label>
         <label><input type="checkbox" id="othersCheckbox" name="00Nd5000007RZQf" value="1"> Others</label>
+        <input type="text" id="othersInput" name="others_text" placeholder="Please specify other services...">
       </div>
-      <input type="text" id="othersInput" name="others_text" placeholder="Please specify other services...">
       <div id="servicesError" class="error-message">⚠️ Please select at least one Service(s) of Interest.</div>
     </div>
 
