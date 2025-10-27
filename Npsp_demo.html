@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  form {
+    background: #ffffff;
+    padding: 25px 35px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 680px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 25px;
+  }
+
+  .logo {
+    grid-column: span 2;
+    text-align: center;
+    background-color: #e8f0fe;
+    border-radius: 8px;
+    padding: 15px 0;
+    margin-bottom: 10px;
+  }
+
+  .logo img {
+    max-width: 130px;
+    height: auto;
+  }
+
+  h2 {
+    grid-column: span 2;
+    text-align: center;
+    color: #004085;
+    margin: 10px 0 20px;
+  }
+
+  h3 {
+    grid-column: span 2;
+    margin-top: 10px;
+    color: #004085;
+    font-size: 16px;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 7px 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .checkbox-label {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+  }
+
+  input[type="submit"] {
+    grid-column: span 2;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  .hidden-field {
+    display: none;
+  }
+</style>
+</head>
+
+<body>
+<form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DKj00000gWS0j" method="POST">
+  <div class="logo">
+    <img src="https://gangues-demo.file.force.com/sfc/dist/version/renditionDownload?rendition=ORIGINAL_Png&versionId=068Kj00000UhIZv&operationContext=DELIVERY&contentId=05TKj00002Ygmkc&page=0&d=/a/Kj000002AI3L/uZ7gQE01BuRqMmxiMWBCc505U_eHRknNeoajkALkbuk&oid=00DKj00000gWS0j&dpt=null&viewId=" alt="Organization Logo">
+  </div>
+
+  <h2>Donation Form</h2>
+
+  <input type="hidden" name="oid" value="00DKj00000gWS0j">
+  <input type="hidden" name="retURL" value="https://www.mainimaterials.com/thank-you.html">
+  <input type="hidden" id="lead_source" name="lead_source" value="Website" class="hidden-field">
+
+  <div>
+    <label for="salutation">Salutation</label>
+    <select id="salutation" name="salutation">
+      <option value="">--None--</option>
+      <option value="Mr.">Mr.</option>
+      <option value="Ms.">Ms.</option>
+      <option value="Mrs.">Mrs.</option>
+      <option value="Dr.">Dr.</option>
+      <option value="Prof.">Prof.</option>
+      <option value="Mx.">Mx.</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="first_name">First Name*</label>
+    <input id="first_name" maxlength="40" name="first_name" type="text" required />
+  </div>
+
+  <div>
+    <label for="last_name">Last Name*</label>
+    <input id="last_name" maxlength="80" name="last_name" type="text" required />
+  </div>
+
+  <div>
+    <label for="company">Company Name</label>
+    <input id="company" maxlength="100" name="company" type="text" placeholder="e.g., ABC Foundation" />
+  </div>
+
+  <div>
+    <label for="phone">Phone*</label>
+    <input id="phone" maxlength="40" name="phone" type="text" required />
+  </div>
+
+  <div>
+    <label for="email">Email*</label>
+    <input id="email" maxlength="80" name="email" type="text" required />
+  </div>
+
+  <div>
+    <label for="00NKj00001KQbb8">Donation Amount (₹)*</label>
+    <input id="00NKj00001KQbb8" name="00NKj00001KQbb8" type="text" placeholder="e.g., 1000" required>
+  </div>
+
+  <div>
+    <label for="00NKj00001KQbbD">Donation Purpose</label>
+    <input id="00NKj00001KQbbD" maxlength="255" name="00NKj00001KQbbD" type="text" placeholder="e.g., Education Fund">
+  </div>
+
+  <div style="grid-column: span 2;">
+    <label for="description">Description</label>
+    <textarea name="description" rows="3" placeholder="Share your thoughts or dedication message..."></textarea>
+  </div>
+
+  <h3>Address Information</h3>
+
+  <div>
+    <label for="street">Street</label>
+    <textarea name="street" rows="2"></textarea>
+  </div>
+
+  <div>
+    <label for="city">City</label>
+    <input id="city" maxlength="40" name="city" type="text" />
+  </div>
+
+  <div>
+    <label for="zip">Zip</label>
+    <input id="zip" maxlength="20" name="zip" type="text" />
+  </div>
+
+  <div>
+    <label for="state">State/Province</label>
+    <input id="state" maxlength="20" name="state" type="text" />
+  </div>
+
+  <div>
+    <label for="country">Country</label>
+    <input id="country" maxlength="40" name="country" type="text" />
+  </div>
+
+  <div class="checkbox-label">
+    <input id="00NKj00001KQbbI" name="00NKj00001KQbbI" type="checkbox" value="1">
+    <label for="00NKj00001KQbbI" style="font-weight: normal;">Has Opted Out Of Email</label>
+  </div>
+
+  <input type="submit" name="submit" value="Submit Donation">
+</form>
+</body>
+</html>
